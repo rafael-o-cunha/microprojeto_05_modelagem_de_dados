@@ -151,25 +151,6 @@ O sistema deverá disponibilizar informações como:
 
 ---
 
-# Regras de Negócio Identificadas
-
-Embora sejam detalhadas em documento próprio durante a próxima etapa do projeto, já foram identificadas as seguintes regras:
-
-* Apenas alunos podem realizar empréstimos.
-* Cada exemplar pode estar emprestado para apenas um aluno por vez.
-* Um livro pode possuir vários exemplares.
-* Um exemplar pertence a um único livro.
-* Um livro pode possuir um ou mais autores.
-* Um autor pode escrever um ou mais livros.
-* Um livro pertence a apenas uma categoria.
-* Uma categoria pode conter vários livros.
-* Um livro pertence a apenas uma editora.
-* Uma editora pode publicar vários livros.
-* Um aluno com empréstimos em atraso ficará impedido de realizar novos empréstimos.
-* Um aluno poderá reservar livros indisponíveis.
-* O histórico de empréstimos nunca deverá ser apagado.
-
----
 
 # Requisitos Não Funcionais
 
@@ -212,5 +193,3 @@ Os nomes das tabelas, colunas, restrições e demais objetos do banco deverão s
 ### RNF10
 
 O modelo deverá permitir futura expansão para inclusão de novos tipos de usuários ou funcionalidades sem necessidade de grandes alterações estruturais.
-
-#
