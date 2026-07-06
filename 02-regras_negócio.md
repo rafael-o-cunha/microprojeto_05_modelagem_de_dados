@@ -10,21 +10,23 @@ Este documento descreve as regras de negócio identificadas durante o levantamen
 
 # Resumo das Regras de Negócio
 
-| Código | Regra                                                                     |
-| ------- | ------------------------------------------------------------------------- |
-| RN01    | Apenas alunos podem realizar empréstimos.                                |
-| RN02    | Um exemplar pode possuir apenas um empréstimo ativo por vez.             |
-| RN03    | Um livro pode possuir vários exemplares.                                 |
-| RN04    | Um exemplar pertence a um único livro.                                   |
-| RN05    | Um livro pode possuir um ou mais autores.                                 |
-| RN06    | Um autor pode escrever um ou mais livros.                                 |
-| RN07    | Um livro pertence a apenas uma categoria.                                 |
-| RN08    | Uma categoria pode conter vários livros.                                 |
-| RN09    | Um livro pertence a apenas uma editora.                                   |
-| RN10    | Uma editora pode publicar vários livros.                                 |
-| RN11    | Alunos com empréstimos em atraso não podem realizar novos empréstimos. |
-| RN12    | Livros indisponíveis podem ser reservados.                               |
-| RN13    | O histórico de empréstimos deve ser preservado.                         |
+| Código      | Regra                                                                                     |
+| ------------ | ----------------------------------------------------------------------------------------- |
+| RN01         | Apenas alunos podem realizar empréstimos.                                                |
+| RN02         | Um exemplar pode possuir apenas um empréstimo ativo por vez.                             |
+| RN03         | Um livro pode possuir vários exemplares.                                                 |
+| RN04         | Um exemplar pertence a um único livro.                                                   |
+| RN05         | Um livro pode possuir um ou mais autores.                                                 |
+| RN06         | Um autor pode escrever um ou mais livros.                                                 |
+| RN07         | Um livro pertence a apenas uma categoria.                                                 |
+| RN08         | Uma categoria pode conter vários livros.                                                 |
+| RN09         | Um livro pertence a apenas uma editora.                                                   |
+| RN10         | Uma editora pode publicar vários livros.                                                 |
+| RN11         | Alunos com empréstimos em atraso não podem realizar novos empréstimos.                 |
+| RN12         | Livros indisponíveis podem ser reservados.                                               |
+| RN13         | O histórico de empréstimos deve ser preservado.                                         |
+| ==RN14== | Todo empréstimo e devolução deverá ser registrado por um bibliotecário responsável. |
+| ==RN15== | Todo usuário deverá possuir exatamente um perfil de acesso.                             |
 
 ---
 
@@ -203,9 +205,9 @@ Incentivar a devolução dentro do prazo estabelecido.
 
 ## RN12 — Livros indisponíveis poderão ser reservados
 
-Quando todos os exemplares de um livro estiverem emprestados, o aluno poderá registrar uma reserva.
+Quando todos os exemplares de um livro estiverem emprestados, o aluno poderá registrar uma reserva e as reservas são realizadas para livros e não para exemplares.
 
-A reserva permanecerá ativa até que um exemplar esteja disponível ou seja cancelada.
+A reserva permanecerá ativa até que um exemplar esteja disponível ou seja cancelada pois quando houver exemplar disponível, a reserva poderá ser atendida por qualquer exemplar pertencente ao livro reservado.
 
 **Objetivo**
 
@@ -232,5 +234,47 @@ Preservar o histórico de utilização da biblioteca.
 **Entidades impactadas**
 
 * Empréstimo
+
+---
+
+## RN14 — Todo empréstimo e devolução deverá ser registrado por um bibliotecário responsável
+
+Toda operação de empréstimo ou devolução deverá ser registrada por um usuário com perfil de Bibliotecário.
+
+Essa informação deverá ser preservada para fins de auditoria e rastreabilidade.
+
+**Objetivo**
+
+Permitir identificar qual bibliotecário realizou cada operação na biblioteca.
+
+**Entidades impactadas**
+
+- Usuário
+- Perfil
+- Empréstimo
+
+---
+
+## RN15 — Todo usuário deverá possuir exatamente um perfil de acesso
+
+Todo usuário cadastrado no sistema deverá possuir exatamente um perfil de acesso.
+
+O perfil definirá o papel desempenhado pelo usuário dentro do sistema.
+
+Os perfis inicialmente previstos são:
+
+- Aluno
+- Bibliotecário
+
+Novos perfis poderão ser adicionados futuramente sem necessidade de alteração da estrutura do banco de dados.
+
+**Objetivo**
+
+Centralizar o gerenciamento dos tipos de usuários e facilitar a evolução do sistema.
+
+**Entidades impactadas**
+
+- Usuário
+- Perfil
 
 ---

@@ -7,11 +7,13 @@
 Meu ojetivo com este microprojeto é praticar modelagem de dados a partir de um problema muito comum em entrevistas técnicas, além disso como programador passo a maior parte do tempo consumindo modelos do que criando, então é sempre bom praticar. [1]
 Como eu pratico autoeducação, então todos passos, estruturas, ideias de projetos são minhas e por isso pode ocorre de eu não seguir o que é trivial do mercado ou considerado boas ou melhores práticas de mercado...
 
+![ciclo projeto](resources/processo-especificação-requisitos-modelagem-dados.jpg)
+
 ## Ferramentas
 
 Utilizarei ferramentas que me permitirão implementar a modelagem além de testá-la:
 
-- DrawDB  - para criação dos diagramas [2]
+- DrawDB e Miro - para criação dos diagramas [2]
 - PostgreDB  - para implementação e teste do modelo [3]
 - DBeaver  - SGBD para visualizar, interagir e testar o modelo [4]
 - VsCode - editor(nem vou anotar ou deixa ref rs) que usarei neste projeto para facilitar anotações, criação e uso do ambiente.
@@ -142,14 +144,14 @@ Normalmente uma entidade:
 A partir desta pergunta e dos critérios já possível identificar um conjunto de entidades iniciais:
 
 - Livro
-- Exemplar
 - Autor
-- Categoria
 - Editora
-- Empréstimo
-- Reserva
+- Categoria
+- Exemplar
 - Aluno
 - Bibliotecário
+- Empréstimo
+- Reserva
 
 Além das entidades identificadas é possível identificar novas entidades ao longo do processo de requisitos e modelagem como forma de "amadurecimento" das informações, identificando inclusive entidades de apoio que existirão apenas no modelo de dados e não em uma aplicação, ou entidades que deixarão de existir e se tornarão atributos de uma outra entidade visando simpificar o modelo de dados.
 
@@ -166,20 +168,133 @@ Nesta etapa serrão realizadas:
 - normalização(estruturação, desestruturação e reestruturação se necessário de entidades para adequação das formas normais de normalização de modelo de dados)
 - representação visual(diagrama) do modelo de dados.
 
-==Obs.:== 
+==Obs.:==
 
 > Conforme mencionado na etapa anterior estou concentro etapas na parte visual para evitar excesso de anotações, pois não costumo anotar muito coisas que posso encontrar na bibliografia então procuro criar minhas notas como pontos de referência para recaptulação, replicação e reflexão do que foi encontrado nas pesquisas e construído em um projeto.
 
+A construção de um DER visa mostrar os itens mencionados acima(entidades, relacionamentos e cardinalidades) e basicamente deve responder perguntas como:
+
+- Um livro possui quantos exemplares?
+- Um aluno pode possuir quantos empréstimos?
+- Um empréstimo pertence a quantos alunos?
+
+==Obs.:==
+
+> Um DER é um modelo conceitual e normalmente não possui tipos de dados, índices e constraints, porém neste microprojeto irei criar os dois modelos, o conceitual (sem representar atributos) e o lógico representando atributos sem detalhar seus tipos e constraints pois isso deixarei para o dicionário de dados. [9]
+>
+> O Modelo conceitual será criado usando *Miro* que possui elementos de fácil uso e lousa infinita.
+> O modelo lógico será criado no *Draw DB* como mencionado  no início das minhas anotações.
+
+A partir deste ponto quero buscar responder as seguintes perguntas:
+
+> Como uma entidade se relaciona com a outra?
+> Quem se relaciona?
+> Qual verbo que representa esse relacionamento?
+> Qual a cardinalidade?
+
+Para respondê-la é possível realizar afirmações do tipo:
+
+- possui
+- tem um
+- é publicado por
+- pertence a
+- etc.
+
+com isso consigo criar um catálogo pra resumir o processo até o momento e então criar o diagrama a partir dele.
+
+## V1
+
+## Catálogo de Relacionamentos
+
+| Código | Origem    | Verbo           | Destino     | Cardinalidade | Obrigatório | Regra(s) de Negócio |
+| :-----: | --------- | --------------- | ----------- | :-----------: | :----------: | -------------------- |
+|   R01   | Livro     | possui          | Exemplar    |      1:N      |     Sim     | RN03, RN04           |
+|   R02   | Editora   | publica         | Livro       |      1:N      |     Sim     | RN09, RN10           |
+|   R03   | Categoria | classifica      | Livro       |      1:N      |     Sim     | RN07, RN08           |
+|   R04   | Livro     | é escrito por  | Autor       |      N:N      |     Sim     | RN05, RN06           |
+|   R05   | Usuário  | realiza         | Empréstimo |      1:N      |     Não     | RN01                 |
+|   R06   | Usuário  | registra        | Empréstimo |      1:N      |     Sim     | RN14                 |
+|   R07   | Exemplar  | participa de    | Empréstimo |      1:N      |     Não     | RN02                 |
+|   R08   | Usuário  | realiza         | Reserva     |      1:N      |     Não     | RN12                 |
+|   R09   | Livro     | é reservado em | Reserva     |      1:N      |     Não     | RN12                 |
+|   R10   | Perfil    | é atribuído a | Usuário    |      1:N      |     Sim     | RN15                 |
+
+Transformando as anotações do catálogo que criado a partir das relações respondidas e afirmadas coloquei no diagrama as entidades (retângulos) e usei Losangos para relacioná-las e seguir o básico da simbologia para DER/MER [10]
+
+vou deixar saldo a primeira versão aqui para manter o histórico.
+
+![1783306598131](resources/der_v1.png)
+
+A partir da V1 é possível refletir diversos aspectos da modelagem e já observar tratamentos que precisam ser feitos ligados a cardinalidade de relações N:N.
+
+- As entidades Aluno e Bibliotecáriio podem amadurecer e mudar pois tendem a ter praticamente os mesmos dados, indicando ==perfil== de ==usuário== do sistema então poderá ser: usuário -> possui -> perfil
+- - visualmente a rerepresentação do modelo na próxima versão muda, mas a primeira está correta, a otimização é apenas uma transformação destas entidades de domínio para aspecto de autorização de um sistema.
+- O empréstimo ficará: usuário -> registra empréstimo, sendo usuário tanto Aluno quanto Bibliotecário, logo o empréstimo continua se relacionando com as duas entidades originais porém sendo identificado agora por meio de atributos.
+- O empréstimo é identificado como entidade fraca pois para existir depende do aluno, porém pode ser uma entidade muito importante no modelo, dado que um dos requisitos é o registro histórico, então esta entidade representa a movimentação de entrada e saída de exemplares com datas e responsáveis na operação.
+
+==Obs.:==
+
+> Dado a importância da entidade Empréstimo que terá uma responsabilidade clara de Histórico faz sentido reavaliar regras de negócio e nesse processo criei uma nova regra, a ==RN14==
+
+==Obs.:==
+
+> Dado a alteração para V2 sobre as entidades Aluno e Bibliotecário na representação do DER e catálogo faz sentido reavaliar regras de negócio e nesse processo criei uma nova regra, a ==RN15==
+
+## V2
+
+### Atualizando o catálogo e o diagrama:
+
+|   Código   | Origem    | Verbo           | Destino     | Cardinalidade | Obrigatório | Regra(s) de Negócio |
+| :---------: | --------- | --------------- | ----------- | :-----------: | :----------: | -------------------- |
+|     R01     | Livro     | possui          | Exemplar    |      1:N      |     Sim     | RN03, RN04           |
+|     R02     | Editora   | publica         | Livro       |      1:N      |     Sim     | RN09, RN10           |
+|     R03     | Categoria | classifica      | Livro       |      1:N      |     Sim     | RN07, RN08           |
+|     R04     | Livro     | é escrito por  | Autor       |      N:N      |     Sim     | RN05, RN06           |
+| ==R05== | Usuário  | realiza         | Empréstimo |      1:N      |     Não     | RN01                 |
+| ==R06== | Usuário  | registra        | Empréstimo |      1:N      |     Sim     | RN14                 |
+|     R07     | Exemplar  | participa de    | Empréstimo |      1:N      |     Não     | RN02                 |
+| ==R08== | Usuário  | realiza         | Reserva     |      1:N      |     Não     | RN12                 |
+|     R09     | Livro     | é reservado em | Reserva     |      1:N      |     Não     | RN12                 |
+| ==R10== | Perfil    | é atribuído a | Usuário    |      1:N      |     Sim     | RN15                 |
+
+![1783306635275](resources/der_v2.png)
+
+## V3
+
+- identificando relações N:N e tratando para a próxima versão do modelo, o que naturalmente produz entidades auxiliares associativas. [11]
+- Um banco de dados não implementa diretamente uma relação N:N, ao contrário disso costuma implementar um tratamento com entidade associativa transformando em relacionamento 1:N com esta entidade, no caso desse microprojeto eu tive um N:N em Livro - Autor, e que para versão 3 do modelo ficará como: Livro -> LivroAutor -> Autor para resolver o problema da cardinalidade.
+
+## Catálogo de Relacionamentos (V3)
+
+|   Código   | Origem    | Verbo                | Destino     | Cardinalidade | Obrigatório | Regra(s) de Negócio |
+| :---------: | --------- | -------------------- | ----------- | :-----------: | :----------: | -------------------- |
+|     R01     | Livro     | possui               | Exemplar    |      1:N      |     Sim     | RN03, RN04           |
+|     R02     | Editora   | publica              | Livro       |      1:N      |     Sim     | RN09, RN10           |
+|     R03     | Categoria | classifica           | Livro       |      1:N      |     Sim     | RN07, RN08           |
+| ==R04== | Livro     | possui autoria       | LivroAutor  |      1:N      |     Sim     | RN05, RN06           |
+| ==R05== | Autor     | participa da autoria | LivroAutor  |      1:N      |     Sim     | RN05, RN06           |
+|     R06     | Usuário  | realiza              | Empréstimo |      1:N      |     Não     | RN01                 |
+|     R07     | Usuário  | registra             | Empréstimo |      1:N      |     Sim     | RN14                 |
+|     R08     | Exemplar  | participa de         | Empréstimo |      1:N      |     Não     | RN02                 |
+|     R09     | Usuário  | realiza              | Reserva     |      1:N      |     Não     | RN12                 |
+|     R10     | Usuário  | registra             | Reserva     |      1:N      |     Sim     | RN16                 |
+|     R11     | Livro     | é reservado em      | Reserva     |      1:N      |     Não     | RN12                 |
+|     R12     | Perfil    | classifica           | Usuário    |      1:N      |     Sim     | RN15                 |
+
+![1783306635275](resources/der_v3.png)
+
+
+
+- A V3 fecha o diagrama e os atributos das entidades levarei para o modelo lógico e o detalhamento de tipo, constraints e etc deixarei para o dicionario de dados para não poluir os diagramas.
+
+
+## Diagrama Lógico 
 
 
 
 ---
 
-
-
 ## Dicionário de dados
-
-
 
 ## Conjunto de perguntas para validar o modelo
 
@@ -198,6 +313,8 @@ Nesta etapa serrão realizadas:
 [1.2] [www.devmedia.com.br/guia/modelagem-de-dados/34654](https://www.devmedia.com.br/guia/modelagem-de-dados/34654)
 
 [2] https://drawdb.vercel.app/
+
+[2.1] [miro.com](https://miro.com/)
 
 [3] https://www.postgresql.org/
 
@@ -224,3 +341,17 @@ Nesta etapa serrão realizadas:
 [8.1] [apps.univesp.br/novotec/modelagem-de-dados](https://apps.univesp.br/novotec/modelagem-de-dados/)
 
 [8.2] [www.devmedia.com.br/modelagem-de-dados-2-os-relacionamentos/4142](https://www.devmedia.com.br/modelagem-de-dados-2-os-relacionamentos/4142)
+
+[9] [pt.stackoverflow.com/questions/294699/qual-a-diferen%C3%A7a-entre-modelagem-conceitual-l%C3%B3gica-e-f%C3%ADsica](https://pt.stackoverflow.com/questions/294699/qual-a-diferen%C3%A7a-entre-modelagem-conceitual-l%C3%B3gica-e-f%C3%ADsica)
+
+[10] [edraw.wondershare.com.br/er-diagram-symbols.html](https://edraw.wondershare.com.br/er-diagram-symbols.html)
+
+[10.1] [homepages.dcc.ufmg.br/~laender/material/ibd-parte2.pdf](https://homepages.dcc.ufmg.br/~laender/material/ibd-parte2.pdf)
+
+[10.2] [www.bosontreinamentos.com.br/modelagem-de-dados/o-modelo-entidade-relacionamento-introducao](https://www.bosontreinamentos.com.br/modelagem-de-dados/o-modelo-entidade-relacionamento-introducao/)
+
+[10.3] [www.inf.ufsc.br/~r.fileto/Disciplinas/INE5423-2010-1/Aulas/02-MER.pdf](https://www.inf.ufsc.br/~r.fileto/Disciplinas/INE5423-2010-1/Aulas/02-MER.pdf)
+
+[10.4] [galileu.coltec.ufmg.br/fantini/hp/CursoBD/Curso/Mysql_XX_Projetos_Parte02_ConceitualModeloER.php](http://galileu.coltec.ufmg.br/fantini/hp/CursoBD/Curso/Mysql_XX_Projetos_Parte02_ConceitualModeloER.php)
+
+[11] [www.devmedia.com.br/modelagem-1-n-ou-n-n/38894](https://www.devmedia.com.br/modelagem-1-n-ou-n-n/38894)
