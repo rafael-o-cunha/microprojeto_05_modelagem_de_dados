@@ -27,12 +27,14 @@ Este documento descreve as regras de negócio identificadas durante o levantamen
 | RN13         | O histórico de empréstimos deve ser preservado.                                         |
 | ==RN14== | Todo empréstimo e devolução deverá ser registrado por um bibliotecário responsável. |
 | ==RN15== | Todo usuário deverá possuir exatamente um perfil de acesso.                             |
+| ==RN16== | Todo registro deverá possuir um status válido                                           |
+| ==RN17== | Toda entidade deverá registrar informações de auditoria                                |
 
 ---
 
 # Regras de Negócio
 
-## RN01 — Apenas alunos podem realizar empréstimos
+## RN01 — Apenas alunos podem realizar empréstimos (V1.0)
 
 Somente usuários cadastrados como alunos poderão realizar empréstimos de livros.
 
@@ -47,7 +49,7 @@ Garantir que apenas estudantes utilizem o serviço de empréstimo da biblioteca.
 
 ---
 
-## RN02 — Um exemplar pode estar emprestado para apenas um aluno por vez
+## RN02 — Um exemplar pode estar emprestado para apenas um aluno por vez (V1.0)
 
 Cada exemplar poderá possuir apenas um empréstimo ativo simultaneamente.
 
@@ -64,7 +66,7 @@ Evitar empréstimos simultâneos do mesmo exemplar.
 
 ---
 
-## RN03 — Um livro pode possuir vários exemplares
+## RN03 — Um livro pode possuir vários exemplares (V1.0)
 
 Um livro poderá possuir uma ou mais cópias físicas disponíveis na biblioteca.
 
@@ -81,7 +83,7 @@ Permitir controlar individualmente cada cópia disponível.
 
 ---
 
-## RN04 — Um exemplar pertence a um único livro
+## RN04 — Um exemplar pertence a um único livro (V1.0)
 
 Cada exemplar deverá estar associado exclusivamente a um único livro.
 
@@ -98,7 +100,7 @@ Garantir a integridade do acervo.
 
 ---
 
-## RN05 — Um livro pode possuir um ou mais autores
+## RN05 — Um livro pode possuir um ou mais autores (V1.0)
 
 Um livro poderá ser escrito por um ou vários autores.
 
@@ -113,7 +115,7 @@ Representar corretamente obras com autoria múltipla.
 
 ---
 
-## RN06 — Um autor pode escrever um ou mais livros
+## RN06 — Um autor pode escrever um ou mais livros (V1.0)
 
 Um autor poderá estar associado à autoria de diversos livros cadastrados.
 
@@ -128,7 +130,7 @@ Evitar redundância de informações dos autores.
 
 ---
 
-## RN07 — Um livro pertence a apenas uma categoria
+## RN07 — Um livro pertence a apenas uma categoria (V1.0)
 
 Cada livro deverá ser classificado em apenas uma categoria.
 
@@ -143,7 +145,7 @@ Facilitar a organização e consulta do acervo.
 
 ---
 
-## RN08 — Uma categoria pode conter vários livros
+## RN08 — Uma categoria pode conter vários livros (V1.0)
 
 Uma categoria poderá agrupar diversos livros.
 
@@ -158,7 +160,7 @@ Permitir organização temática do acervo.
 
 ---
 
-## RN09 — Um livro pertence a apenas uma editora
+## RN09 — Um livro pertence a apenas uma editora (V1.0)
 
 Cada livro deverá estar associado a uma única editora.
 
@@ -173,7 +175,7 @@ Manter a origem editorial da publicação.
 
 ---
 
-## RN10 — Uma editora pode publicar vários livros
+## RN10 — Uma editora pode publicar vários livros (V1.0)
 
 Uma editora poderá publicar diversos livros cadastrados.
 
@@ -188,9 +190,9 @@ Evitar duplicidade de informações sobre editoras.
 
 ---
 
-## RN11 — Alunos com empréstimos em atraso não poderão realizar novos empréstimos
+## RN11 — Alunos com empréstimos em atraso não poderão realizar novos empréstimos (V1.0)
 
-Caso o aluno possua pelo menos um empréstimo em atraso, novos empréstimos deverão ser bloqueados até a regularização da situação.
+Caso o usuário com perfil de aluno possua pelo menos um empréstimo em atraso, novos empréstimos deverão ser bloqueados até a regularização da situação.
 
 **Objetivo**
 
@@ -203,9 +205,9 @@ Incentivar a devolução dentro do prazo estabelecido.
 
 ---
 
-## RN12 — Livros indisponíveis poderão ser reservados
+## RN12 — Livros indisponíveis poderão ser reservados (V1.0)
 
-Quando todos os exemplares de um livro estiverem emprestados, o aluno poderá registrar uma reserva e as reservas são realizadas para livros e não para exemplares.
+Quando todos os exemplares de um livro estiverem emprestados, o usuário com perfil aluno poderá registrar uma reserva e as reservas são realizadas para livros e não para exemplares.
 
 A reserva permanecerá ativa até que um exemplar esteja disponível ou seja cancelada pois quando houver exemplar disponível, a reserva poderá ser atendida por qualquer exemplar pertencente ao livro reservado.
 
@@ -221,7 +223,7 @@ Organizar a fila de espera para livros indisponíveis.
 
 ---
 
-## RN13 — O histórico de empréstimos deverá ser preservado
+## RN13 — O histórico de empréstimos deverá ser preservado (V1.0)
 
 Registros de empréstimos concluídos não poderão ser excluídos do banco de dados.
 
@@ -237,7 +239,7 @@ Preservar o histórico de utilização da biblioteca.
 
 ---
 
-## RN14 — Todo empréstimo e devolução deverá ser registrado por um bibliotecário responsável
+## RN14 — Todo empréstimo e devolução deverá ser registrado por um bibliotecário responsável (V1.0)
 
 Toda operação de empréstimo ou devolução deverá ser registrada por um usuário com perfil de Bibliotecário.
 
@@ -255,7 +257,7 @@ Permitir identificar qual bibliotecário realizou cada operação na biblioteca.
 
 ---
 
-## RN15 — Todo usuário deverá possuir exatamente um perfil de acesso
+## RN15 — Todo usuário deverá possuir exatamente um perfil de acesso (V1.0)
 
 Todo usuário cadastrado no sistema deverá possuir exatamente um perfil de acesso.
 
@@ -276,5 +278,42 @@ Centralizar o gerenciamento dos tipos de usuários e facilitar a evolução do s
 
 - Usuário
 - Perfil
+
+---
+
+## RN16 — Todo registro deverá possuir um status válido (V1.0)
+
+Atualmente o modelo lógico introduziu a entidade `Status`, mas nenhuma regra explica sua existência.
+
+> Todo Exemplar, Reserva e Empréstimo deverão possuir exatamente um status válido cadastrado no sistema.
+
+**Objetivo**
+
+Centralizar o controle dos estados das entidades e evitar utilização de valores livres.
+
+**Entidades impactadas**
+
+* Status
+* Exemplar
+* Reserva
+* Empréstimo
+
+---
+
+## RN17 — Toda entidade deverá registrar informações de auditoria (V1.0)
+
+Também nasceu durante o modelo lógico.
+
+> Todos os registros persistidos deverão possuir data de criação e data da última atualização.
+
+Esta é uma regra mais técnica e menos de negócio porém possui seu lugar reservado aqui para compor o conjunto de regras simplificando anotações e documentos.
+
+**Objetivo**
+
+Permitir rastreabilidade mínima das alterações realizadas no banco de dados.
+
+**Entidades impactadas**
+
+Todas.
 
 ---

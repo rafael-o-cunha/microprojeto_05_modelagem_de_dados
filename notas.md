@@ -9,6 +9,11 @@ Como eu pratico autoeducação, então todos passos, estruturas, ideias de proje
 
 ![ciclo projeto](resources/processo-especificação-requisitos-modelagem-dados.jpg)
 
+==Obs.:==
+
+> A organização do projeto ao longo do desenvolvimento se dará por nível de abstração seguindo a seguinte sequência:
+> Negócio -> DER Conceitual -> Modelo Lógico -> Dicionário de dados -> Modelo Fìsico.
+
 ## Ferramentas
 
 Utilizarei ferramentas que me permitirão implementar a modelagem além de testá-la:
@@ -118,7 +123,7 @@ Algumas regras serão implementadas diretamente pelo banco de dados, por meio de
 
 Esta etapa ficou formalizada no seguinte documento de regras se negócio:
 
-> 02-regras_negócio.md
+> 02-regras_negocio.md
 
 ---
 
@@ -283,22 +288,93 @@ A partir da V1 é possível refletir diversos aspectos da modelagem e já observ
 
 ![1783306635275](resources/der_v3.png)
 
-
-
 - A V3 fecha o diagrama e os atributos das entidades levarei para o modelo lógico e o detalhamento de tipo, constraints e etc deixarei para o dicionario de dados para não poluir os diagramas.
 
+## Diagrama Lógico
 
-## Diagrama Lógico 
+Nesta etapa eu desci mais um nível de abstração para olhar os detalhes de cada entidade, onde abordo os atributos e coloquei seus detalhes no dicionário de dados para não poluir os diagramas.
+
+No diagrama lógico comecei a realizar perguntas para listar os atributos e identificá-los como:
+
+- Qual atributo identifica unicamente cada entidade?
+- Quais atributos nunca podem se repetir?
+- Quais atributos são obrigatórios?
+- Quais atributos aceitam nulo?
+
+O detalhamento de informações do modelo lógico de dará pela lista de atributos e quais são chaves primária/estrangeira, os tipos de dados e suas constraints estarão no dicionário de dados para manter o diagrama mais limpo.
+
+O modelo começa a se descobrar representando atributos de negócio e atributos técnicos  de forma a viabilizar e formalizar o funcionamento de um futuro sistema.
+
+## V1
+
+Neste ponto eu criei um print representando o V1, antes de começar a relacionar as entidades e já e possível ver a criação de uma nova entidade (status) que auxilia as entidades: exemplar, emprestimo e reserva, decidi criar essa entidade para controle e sendo uma só para não inchar  muito o modelo.
+
+![1783306635275](resources/der_logico_v1.png)
+
+## V2
+
+Para evolução do modelo lógico realizei as ligações entre as entidades(relacionamentos e cardinalidades) e também defini os atributos chaves das entidades.
+
+O detalhamento de cada atributo ficará presente no dicionário de dados, representando o próximo nível de abstração da modelagem antes do modelo físico.
+
+![1783306635275](resources/der_logico_v2.png)
+
+==Obs.:==
+
+> dado a evolução do modelo a partir do modelo lógico decidi fazer uma revisão nas etapas anteriores pois agora temos uma nova entidade presente no modelo "status".
+
+- Acrescentei no documento de regras de negócio duas novas regras: ==RN16== e ==RN17== que materializam o uso da nova entidade (status) e dos atributos de criação e atualização de registros(created_at e updated_at)
+- O catálogo de relacionamentos passa a ter novos 3 relacionamentos documentados: ==R13==, ==R14== e ==R15== que descrevem os relacionamentos com a entidade "status"
+
+## Inclusão no Catálogo de Relacionamentos
+
+| Código | Origem | Verbo      | Destino     | Cardinalidade | Obrigatório | RN   |
+| ------- | ------ | ---------- | ----------- | ------------- | ------------ | ---- |
+| R13     | Status | classifica | Exemplar    | 1:N           | Sim          | RN16 |
+| R14     | Status | classifica | Reserva     | 1:N           | Sim          | RN16 |
+| R15     | Status | classifica | Empréstimo | 1:N           | Sim          | RN16 |
+
+## V4 do DER conceitual.
+
+O DER conceitual também evolui buscando representar a entidade Status gerando uma V4 do modelo e acompanhando o modelo lógico.
+
+![1783306635275](resources/der_v4.png)
 
 
 
 ---
 
+
+
 ## Dicionário de dados
+
+Conforme mencionei anteriormente eu deixei o modelo conceitual e lógico mais simples, sem detalhamento dos atributos para que ficassem definidos no dicionário de dados e assim pudesse ter uma presença relevante de cada artefato da modelagem praticado.
+
+Para criação do dicionário de dados usei um modelo que defini após pesquisas e que acredito ser o suficiente para o microprojeto. [12]
+
+Cada entidade terá um conjunto de dados espeficados no dicionário de dados:
+
+- Descrição
+- Atributos (Campo, Tipo, PK, FK, NN, UK, Default e Descrição)
+- Restrições
+- Regras de negócio relacionadas
+
+
+O arquivo com o dicionário de dados está definido como:
+
+> 03-dicionario_dados.md
+
+para acelerar a criação desde documento, utilizei IA, e a partir de todo contexto até aqui anotado durante o desenvolvimento o doc foi gerado no formato que especifiquei e após isso revisado por mim.
+
+---
+
+
+
+
 
 ## Conjunto de perguntas para validar o modelo
 
-## SQL ANSI
+## Materialização do Modelo de dados em uma base de dados populada
 
 ## Adaptação para PostgreSQL
 
@@ -355,3 +431,11 @@ A partir da V1 é possível refletir diversos aspectos da modelagem e já observ
 [10.4] [galileu.coltec.ufmg.br/fantini/hp/CursoBD/Curso/Mysql_XX_Projetos_Parte02_ConceitualModeloER.php](http://galileu.coltec.ufmg.br/fantini/hp/CursoBD/Curso/Mysql_XX_Projetos_Parte02_ConceitualModeloER.php)
 
 [11] [www.devmedia.com.br/modelagem-1-n-ou-n-n/38894](https://www.devmedia.com.br/modelagem-1-n-ou-n-n/38894)
+
+[12] [developer.sankhya.com.br/docs/dicion%C3%A1rio-de-dados](https://developer.sankhya.com.br/docs/dicion%C3%A1rio-de-dados)
+
+[12.1] [observatorio.fortaleza.ce.gov.br/dados/cultura-de-dados/como-criar-um-dicionario-de-dados](https://observatorio.fortaleza.ce.gov.br/dados/cultura-de-dados/como-criar-um-dicionario-de-dados/)
+
+[12.2] [medium.com/datapsico/dicionario-de-dados-ac3ce726c34b](https://medium.com/datapsico/dicionario-de-dados-ac3ce726c34b)
+
+[12.3] [moodle.unesp.br/pluginfile.php/24935/mod_resource/content/2/4-DicionarioDados.pdf](https://moodle.unesp.br/pluginfile.php/24935/mod_resource/content/2/4-DicionarioDados.pdf)
