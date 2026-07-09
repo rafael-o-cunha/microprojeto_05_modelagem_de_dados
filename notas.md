@@ -25,14 +25,13 @@ Utilizarei ferramentas que me permitirão implementar a modelagem além de test�
 
 ## Passos que segui para realizar o microprojeto
 
-- levantamento de requisitos
-- regras de negócio
-- entidades
+- Levantamento de requisitos
+- Regras de negócio
+- Entidades
 - DER
-- dicionário de dados
-- conjunto de perguntas para validar o modelo
+- Dicionário de dados
+- Conjunto de perguntas para validar o modelo
 - SQL ANSI
-- adaptação para PostgreSQL
 
 ---
 
@@ -340,11 +339,7 @@ O DER conceitual também evolui buscando representar a entidade Status gerando u
 
 ![1783306635275](resources/der_v4.png)
 
-
-
 ---
-
-
 
 ## Dicionário de dados
 
@@ -359,7 +354,6 @@ Cada entidade terá um conjunto de dados espeficados no dicionário de dados:
 - Restrições
 - Regras de negócio relacionadas
 
-
 O arquivo com o dicionário de dados está definido como:
 
 > 03-dicionario_dados.md
@@ -368,15 +362,66 @@ para acelerar a criação desde documento, utilizei IA, e a partir de todo conte
 
 ---
 
-
-
-
-
 ## Conjunto de perguntas para validar o modelo
+
+Para saber se o modelo atende as necessidades de negócio eu tenho a ideia de fazer perguntas ao modelo que posteriormente serão materializadas em querys que são executadas para estar toda estrutura das entidades e relações.
+
+Além das perguntas que se materializam am consultas eu também penso que seja interessante realização de operações, simulando um sistema, então deixei tudo isso junto.
+
+Dado a quantidade de operações e pergunras possíveis que podem ser feitas a este modelo durante a prática do microprojeto, optei por delegar parte da criação a uma IA para apoiar o processo, durante o refinamento deixei apenas as perguntas e operações pertinentes  e ou implementei apenas as que achei pertinentes no momento para a prática, após isso solicitei formatação do documento para IA buscando simplificá-lo e torná-lo objetivo.
+
+Para as perguntas e operações criei o documento:
+
+> 04-valicao_modelo_dados.md
+
+A materialização das perguntas em Script SQL foi inserida em outro arquivo.
+
+---
 
 ## Materialização do Modelo de dados em uma base de dados populada
 
-## Adaptação para PostgreSQL
+Para materialização do Modelo conceitual e lógico em um modelo físico e com massa de dados utilizei container Docker com imagem do postgres para facilitar e um Makefile para realizar os comandos de forma mais simples na hora de gerir o ambiente.
+
+Para materialização do modelo 2 scripts foram criados, o script da estrutura do banco e o script que gera a primeira massa de dados(seed) do banco.
+
+Os arquivos com os scripts são:
+
+> sql/05-schema_db.sql 
+> sql/06-seed_db.sql
+
+Para criação do banco, materializando o modelo de dados fiz uso de recursos básicos que compõe as tabelas, buscando respeitar ANSI SQL e aplicando a notação PostgreSQL sempre que possível, além disso os tipos de dados utilizados são os básicos que atendem a prática deste microprojeto.
+
+Usei recursos como:
+
+- Tipos dedados
+  - Integer, varchar, text, date, timestamp, boolean
+- Gração de chaves
+  - auto incremento, generated always as identity(cria uma coluna cujo valor é gerado automaticamente pelo PostgreSQL, usando uma *sequence* interna.)
+- Restrições
+  - primary key, foreign key, unique, check, not null, default
+- Integridade referencial
+  - FK 1:N, FK Composta, PK composta
+- índices
+  - create index(do Postgres), índices em FK, Índices para pesquisa [14]
+- Auditoria
+  - created_at, updated_at
+- Convenções de nomeclatura
+  - tb_, pk_, fk_, uk_, ck_, idx_ (Redgate, SQL Server, Oracle, PostgreSQL community + uso comum em projetos corporativos)
+- Recursos do Postgres
+  - create schema, set search_path, text, generated aways as identity
+
+Em um outro projeto pretendo usar:
+
+- comment on, BigInt
+
+
+Um ponto relevante que vejo no mercado é o uso de estratégias de otimização de consultas sempre que possível, o que inclui o uso de índices em base de dados, procurei aplicar esta parte para experimentar [13]
+
+
+
+---
+
+## Realizando Operações no banco de dados que materializa o modelo para validá-lo a partir do documento de validação
 
 ---
 
@@ -439,3 +484,17 @@ para acelerar a criação desde documento, utilizei IA, e a partir de todo conte
 [12.2] [medium.com/datapsico/dicionario-de-dados-ac3ce726c34b](https://medium.com/datapsico/dicionario-de-dados-ac3ce726c34b)
 
 [12.3] [moodle.unesp.br/pluginfile.php/24935/mod_resource/content/2/4-DicionarioDados.pdf](https://moodle.unesp.br/pluginfile.php/24935/mod_resource/content/2/4-DicionarioDados.pdf)
+
+[13] [www.devmedia.com.br/entendendo-e-usando-indices/6567](https://www.devmedia.com.br/entendendo-e-usando-indices/6567)
+
+[13.1] [www.alura.com.br/artigos/indices-no-postgresql?srsltid=AfmBOop4kFewF6ccyZ9gsStB1Rhd5-B8Jdftt2zQY1vbBmUcH6QVqY41](https://www.alura.com.br/artigos/indices-no-postgresql?srsltid=AfmBOop4kFewF6ccyZ9gsStB1Rhd5-B8Jdftt2zQY1vbBmUcH6QVqY41)
+
+[13.2] [www.youtube.com/watch?v=Bfm3Ms2cTg0](https://www.youtube.com/watch?v=Bfm3Ms2cTg0)
+
+[13.3] [www.youtube.com/watch?v=-qNSXK7s7_w](https://www.youtube.com/watch?v=-qNSXK7s7_w)
+
+[13.4] [www.youtube.com/watch?v=Ujl67TEXRKs](https://www.youtube.com/watch?v=Ujl67TEXRKs)
+
+[14] [www.postgresql.org/docs/16/btree.html](https://www.postgresql.org/docs/16/btree.html)
+
+[14.1] [medium.com/@devli0/b-tree-indexes-in-postgresql-part-1-theory-eb2668c52520](https://medium.com/@devli0/b-tree-indexes-in-postgresql-part-1-theory-eb2668c52520)

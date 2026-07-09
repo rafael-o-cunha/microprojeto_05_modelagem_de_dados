@@ -111,7 +111,7 @@ Representa os livros cadastrados na biblioteca.
 | isbn           | VARCHAR(20)  |    |    | ✓ | ✓ |                  | ISBN da obra.                           |
 | titulo         | VARCHAR(255) |    |    | ✓ |    |                  | Título do livro.                       |
 | sinopse        | TEXT         |    |    |    |    |                  | Resumo da obra.                         |
-| edicao         | VARCHAR(30)  |    |    |    |    |                  | Número da edição.                    |
+| edicao         | INTEGER      |    |    |    |    |                  | Número da edição.                    |
 | ano_publicacao | SMALLINT     |    |    | ✓ |    |                  | Ano de publicação.                    |
 | numero_paginas | INTEGER      |    |    | ✓ |    |                  | Quantidade de páginas.                 |
 | created_at     | TIMESTAMP    |    |    | ✓ |    | CURRENT_TIMESTAMP | Data de criação.                      |
@@ -196,8 +196,6 @@ Centraliza os estados utilizados por diferentes entidades do sistema.
 
 Os registros desta tabela são organizados por domínio (`tipo`), permitindo reutilização dos estados por diferentes entidades do sistema.
 
-
-
 #### Tipo: EXEMPLAR
 
 | Status     | Descrição                                         |
@@ -209,8 +207,6 @@ Os registros desta tabela são organizados por domínio (`tipo`), permitindo reu
 | EXTRAVIADO | Exemplar perdido ou não localizado.                |
 | DESCARTADO | Exemplar removido permanentemente do acervo.        |
 
-
-
 #### Tipo: EMPRESTIMO
 
 | Status    | Descrição                                  |
@@ -219,8 +215,6 @@ Os registros desta tabela são organizados por domínio (`tipo`), permitindo reu
 | DEVOLVIDO | Empréstimo encerrado com devolução.       |
 | ATRASADO  | Prazo de devolução expirado.               |
 | CANCELADO | Empréstimo cancelado antes da efetivação. |
-
-
 
 #### Tipo: RESERVA
 
@@ -231,15 +225,11 @@ Os registros desta tabela são organizados por domínio (`tipo`), permitindo reu
 | CANCELADA | Reserva cancelada pelo usuário ou bibliotecário. |
 | EXPIRADA  | Reserva perdeu a validade por falta de retirada.   |
 
-
-
 ### Observações
 
 - A combinação `(tipo, status)` identifica unicamente um estado válido do sistema.
 - Novos domínios e novos estados poderão ser adicionados futuramente sem necessidade de alteração da estrutura do banco de dados.
 - Os valores apresentados representam a carga inicial (seed) prevista para o sistema e poderão ser ampliados conforme evolução das regras de negócio.
-
-
 
 ---
 
@@ -349,18 +339,18 @@ Representa as reservas realizadas para livros indisponíveis.
 
 ### Atributos
 
-| Campo             | Tipo      | PK | FK | NN | UK |      Default      | Descrição                      |
-| ----------------- | --------- | :-: | :-: | :-: | :-: | :---------------: | -------------------------------- |
-| id                | INTEGER   | ✓ |    | ✓ |    |       AUTO       | Identificador da reserva.        |
-| id_livro          | INTEGER   |    | ✓ | ✓ |    |                  | Livro reservado.                 |
-| id_status         | INTEGER   |    | ✓ | ✓ |    |                  | Status da reserva.               |
-| id_usuario        | INTEGER   |    | ✓ | ✓ |    |                  | Usuário que realizou a reserva. |
-| data_reserva      | DATE      |    |    | ✓ |    |                  | Data da reserva.                 |
-| data_cancelamento | DATE      |    |    |    |    |                  | Data de cancelamento.            |
-| created_at        | TIMESTAMP |    |    | ✓ |    | CURRENT_TIMESTAMP | Data de criação.               |
-| updated_at        | TIMESTAMP |    |    | ✓ |    | CURRENT_TIMESTAMP | Data da última atualização.   |
+| Campo             | Tipo       | PK | FK | NN | UK |      Default      | Descrição                      |
+| ----------------- | ---------- | :-: | :-: | :-: | :-: | :---------------: | -------------------------------- |
+| id                | INTEGER    | ✓ |    | ✓ |    |       AUTO       | Identificador da reserva.        |
+| id_livro          | INTEGER    |    | ✓ | ✓ |    |                  | Livro reservado.                 |
+| id_status         | INTEGER    |    | ✓ | ✓ |    |                  | Status da reserva.               |
+| id_usuario        | INTEGER    |    | ✓ | ✓ |    |                  | Usuário que realizou a reserva. |
+| data_reserva      | TIMESTAMP  |    |    | ✓ |    | CURRENT_TIMESTAMP | Data da reserva.                 |
+| data_cancelamento | TIMESTAMP  |    |    |    |    |                  | Data de cancelamento.            |
+| created_at        | TIMESTAMP  |    |    | ✓ |    | CURRENT_TIMESTAMP | Data de criação.               |
+| updated_at        | TIMESTAMP  |    |    | ✓ |    | CURRENT_TIMESTAMP | Data da última atualização.   |
 
-### Restrições
+### Restrições 
 
 - Toda reserva deve estar associada a um livro.
 - Toda reserva deve possuir um usuário.
@@ -382,18 +372,18 @@ Representa os empréstimos realizados na biblioteca.
 
 ### Atributos
 
-| Campo                   | Tipo      | PK | FK | NN | UK |      Default      | Descrição                                           |
-| ----------------------- | --------- | :-: | :-: | :-: | :-: | :---------------: | ----------------------------------------------------- |
-| id                      | INTEGER   | ✓ |    | ✓ |    |       AUTO       | Identificador do empréstimo.                         |
-| id_exemplar             | INTEGER   |    | ✓ | ✓ |    |                  | Exemplar emprestado.                                  |
-| id_usuario_responsavel  | INTEGER   |    | ✓ | ✓ |    |                  | Usuário (aluno) responsável pelo empréstimo.       |
-| id_usuario_registro     | INTEGER   |    | ✓ | ✓ |    |                  | Usuário (bibliotecário) que registrou a operação. |
-| id_status               | INTEGER   |    | ✓ | ✓ |    |                  | Status do empréstimo.                                |
-| data_emprestimo         | DATE      |    |    | ✓ |    |                  | Data do empréstimo.                                  |
-| data_prevista_devolucao | DATE      |    |    | ✓ |    |                  | Data prevista para devolução.                       |
-| data_devolucao          | DATE      |    |    |    |    |                  | Data efetiva da devolução.                          |
-| created_at              | TIMESTAMP |    |    | ✓ |    | CURRENT_TIMESTAMP | Data de criação.                                    |
-| updated_at              | TIMESTAMP |    |    | ✓ |    | CURRENT_TIMESTAMP | Data da última atualização.                        |
+| Campo                   | Tipo       | PK | FK | NN | UK |      Default      | Descrição                                           |
+| ----------------------- | ---------- | :-: | :-: | :-: | :-: | :---------------: | ----------------------------------------------------- |
+| id                      | INTEGER    | ✓ |    | ✓ |    |       AUTO       | Identificador do empréstimo.                         |
+| id_exemplar             | INTEGER    |    | ✓ | ✓ |    |                  | Exemplar emprestado.                                  |
+| id_usuario_responsavel  | INTEGER    |    | ✓ | ✓ |    |                  | Usuário (aluno) responsável pelo empréstimo.       |
+| id_usuario_registro     | INTEGER    |    | ✓ | ✓ |    |                  | Usuário (bibliotecário) que registrou a operação. |
+| id_status               | INTEGER    |    | ✓ | ✓ |    |                  | Status do empréstimo.                                |
+| data_emprestimo         | TIMESTAMP  |    |    | ✓ |    |                  | Data do empréstimo.                                  |
+| data_prevista_devolucao | TIMESTAMP  |    |    | ✓ |    |                  | Data prevista para devolução.                       |
+| data_devolucao          | TIMESTAMP  |    |    |    |    |                  | Data efetiva da devolução.                          |
+| created_at              | TIMESTAMP  |    |    | ✓ |    | CURRENT_TIMESTAMP | Data de criação.                                    |
+| updated_at              | TIMESTAMP  |    |    | ✓ |    | CURRENT_TIMESTAMP | Data da última atualização.                        |
 
 ### Restrições
 
