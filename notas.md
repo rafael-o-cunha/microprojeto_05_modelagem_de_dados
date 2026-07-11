@@ -386,10 +386,10 @@ Para materialização do modelo 2 scripts foram criados, o script da estrutura d
 
 Os arquivos com os scripts são:
 
-> sql/05-schema_db.sql 
+> sql/05-schema_db.sql
 > sql/06-seed_db.sql
 
-Para criação do banco, materializando o modelo de dados fiz uso de recursos básicos que compõe as tabelas, buscando respeitar ANSI SQL e aplicando a notação PostgreSQL sempre que possível, além disso os tipos de dados utilizados são os básicos que atendem a prática deste microprojeto.
+Para criação do banco, materializando o modelo de dados fiz uso de recursos básicos que compõe as tabelas, buscando respeitar ANSI SQL e aplicando a notação PostgreSQL sempre que possível, além disso os tipos de dados utilizados são os básicos que atendem a prática deste microprojeto. [15]
 
 Usei recursos como:
 
@@ -414,10 +414,7 @@ Em um outro projeto pretendo usar:
 
 - comment on, BigInt
 
-
 Um ponto relevante que vejo no mercado é o uso de estratégias de otimização de consultas sempre que possível, o que inclui o uso de índices em base de dados, procurei aplicar esta parte para experimentar [13]
-
-
 
 ---
 
@@ -498,3 +495,5 @@ Um ponto relevante que vejo no mercado é o uso de estratégias de otimização 
 [14] [www.postgresql.org/docs/16/btree.html](https://www.postgresql.org/docs/16/btree.html)
 
 [14.1] [medium.com/@devli0/b-tree-indexes-in-postgresql-part-1-theory-eb2668c52520](https://medium.com/@devli0/b-tree-indexes-in-postgresql-part-1-theory-eb2668c52520)
+
+[15] [www.geeksforgeeks.org/sql/sql-ddl-dql-dml-dcl-tcl-commands](https://www.geeksforgeeks.org/sql/sql-ddl-dql-dml-dcl-tcl-commands/)
