@@ -387,7 +387,6 @@ Para materialização do modelo 2 scripts foram criados, o script da estrutura d
 Os arquivos com os scripts são:
 
 > sql/05-schema_db.sql
-> sql/06-seed_db.sql
 
 Para criação do banco, materializando o modelo de dados fiz uso de recursos básicos que compõe as tabelas, buscando respeitar ANSI SQL e aplicando a notação PostgreSQL sempre que possível, além disso os tipos de dados utilizados são os básicos que atendem a prática deste microprojeto. [15]
 
@@ -416,9 +415,45 @@ Em um outro projeto pretendo usar:
 
 Um ponto relevante que vejo no mercado é o uso de estratégias de otimização de consultas sempre que possível, o que inclui o uso de índices em base de dados, procurei aplicar esta parte para experimentar [13]
 
+### Seed
+
+Para validar o modelo materializado(banco de dados criado no postgres) precisei seguir uma sequência que respeitasse as foreign keys, que foi a seguinte ordem:
+
+- status
+- perfil
+- categoria
+- editora
+- autor
+- livro
+- livro_autor
+- usuario
+- exemplar
+- reserva
+- emprestimo
+
+Para realização do seed utilizei IA para acelerar o processo de criação de massa de dados.
+
+Para realização do seed criei o script no arquivo:
+
+> 06-seed_db.sql
+
+
+
+Uma diferença legal que usei nos scripts citados acima é que no primeiro (criação do db) usei `set search_path to` para que os artefatos fossem criados no `schema biblioteca` pois o padrão seria criar o `schema public` já no outro script (de seed) apenas usei o prefixo em cada chamada como por exemplo: `select * from biblioteca.tb_livro` .
+
+- No contexto que citei a diferença está que o primeiro modo funciona na sessão do editor (dbeaver no caso), se fechar e abrir novamente a conexão/editor teria de setar novamente se não a criação dos artefatos iriam para o `schema public` no outro isso e evitado pois a cada chamada  de execução de query o prefixo é enviado junto.
+
+
 ---
 
+
+
 ## Realizando Operações no banco de dados que materializa o modelo para validá-lo a partir do documento de validação
+
+
+
+
+
 
 ---
 
