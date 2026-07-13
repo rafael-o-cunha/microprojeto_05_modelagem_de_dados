@@ -439,7 +439,7 @@ Para realização do seed criei o script no arquivo:
 
 
 
-Uma diferença legal que usei nos scripts citados acima é que no primeiro (criação do db) usei `set search_path to` para que os artefatos fossem criados no `schema biblioteca` pois o padrão seria criar o `schema public` já no outro script (de seed) apenas usei o prefixo em cada chamada como por exemplo: `select * from biblioteca.tb_livro` .
+Uma diferença legal que usei nos scripts citados acima é que no primeiro (criação do db) usei `set search_path to` para que os artefatos fossem criados no `schema biblioteca` pois o padrão seria criar o `schema public` já no outro script (de seed) apenas usei o prefixo em cada chamada como por exemplo: `select * from biblioteca.tb_livro` . [16]
 
 - No contexto que citei a diferença está que o primeiro modo funciona na sessão do editor (dbeaver no caso), se fechar e abrir novamente a conexão/editor teria de setar novamente se não a criação dos artefatos iriam para o `schema public` no outro isso e evitado pois a cada chamada  de execução de query o prefixo é enviado junto.
 
@@ -450,8 +450,29 @@ Uma diferença legal que usei nos scripts citados acima é que no primeiro (cria
 
 ## Realizando Operações no banco de dados que materializa o modelo para validá-lo a partir do documento de validação
 
+Uma maneira interessante de validar o modelo de dados é realizar perguntas a ele, operações e observar se atende as necessidades especificadas nos requisitos e regras de negócio ou se é preciso realizar alterações.
+
+Para validação como citado anteriormente, o modelo foi materializado em um db postgres, logo as operações e perguntas que realizei foram neste banco.
 
 
+As operações e perguntas podem ser encontradas no arquivo:
+
+>  04-validacao_modelo_dados.md
+
+A implementação das operações e perguntas podem ser encontradas no arquivo:
+
+> sql/07-validacao_modelo_dados.sql
+
+Separei os scripts de validação em 4 partes:
+
+- Operações
+- Perguntas
+- Histórico
+- Governança
+
+baseado nessas classificações, foram executados  e o modelo se comportou devidamente.
+
+Não fiz uma apuração profunda dos resultados apenas de alguns scripts executados.
 
 
 
@@ -532,3 +553,5 @@ Uma diferença legal que usei nos scripts citados acima é que no primeiro (cria
 [14.1] [medium.com/@devli0/b-tree-indexes-in-postgresql-part-1-theory-eb2668c52520](https://medium.com/@devli0/b-tree-indexes-in-postgresql-part-1-theory-eb2668c52520)
 
 [15] [www.geeksforgeeks.org/sql/sql-ddl-dql-dml-dcl-tcl-commands](https://www.geeksforgeeks.org/sql/sql-ddl-dql-dml-dcl-tcl-commands/)
+
+[16] [medium.com/@jramcloud1/understanding-the-public-schema-and-search-path-in-postgresql-a-practical-guide-b8b550fab9cc](https://medium.com/@jramcloud1/understanding-the-public-schema-and-search-path-in-postgresql-a-practical-guide-b8b550fab9cc)
