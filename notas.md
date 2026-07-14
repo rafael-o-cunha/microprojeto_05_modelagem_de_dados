@@ -7,7 +7,7 @@
 Meu ojetivo com este microprojeto é praticar modelagem de dados a partir de um problema muito comum em entrevistas técnicas, além disso como programador passo a maior parte do tempo consumindo modelos do que criando, então é sempre bom praticar. [1]
 Como eu pratico autoeducação, então todos passos, estruturas, ideias de projetos são minhas e por isso pode ocorre de eu não seguir o que é trivial do mercado ou considerado boas ou melhores práticas de mercado...
 
-![ciclo projeto](resources/processo-especificação-requisitos-modelagem-dados.jpg)
+![1783989242535](docs/image/notas/processo-especificação-requisitos-modelagem-dados.jpg)
 
 ==Obs.:==
 
@@ -37,7 +37,7 @@ Utilizarei ferramentas que me permitirão implementar a modelagem além de test�
 
 ## Levantamento de requisitos
 
-![Técnicas para levantamento de Requisitos - DevMedia](resources/processo_levantamento_requisitos.png)
+![1783989242535](docs/image/notas/processo_levantamento_requisitos.png)
 
 Em projetos reais, um analista normalmente conduz entrevistas usando perguntas abertas antes de entrar em detalhes técnicos.
 *por ser um microprojeto pessoal precisarei simular a jornada de levantamento de requisitos e alguns aspectos que constróem o cenário do projeto, neste caso cai bem o uso de IA para apoiar o processo. [5]
@@ -128,7 +128,7 @@ Esta etapa ficou formalizada no seguinte documento de regras se negócio:
 
 ## Entidades
 
-![1783266249010](resources/processo_modelagem_dados.png)
+![1783989242535](docs/image/notas/processo_modelagem_dados.png)
 
 A identificação das entidades é um processo que começa no levantamento de requisitos como se fosse feita uma extração das entidades dos requisitos, durante as entrevistas e reuniões, e validadas posteriormente com a inclusão ou alteração e até mesmo remoção de entidades identificadas da lista pois o processo é dinâmico visando  extrair informações de um mundo ambiguo e volátil e trazer para o digital.
 
@@ -227,7 +227,7 @@ Transformando as anotações do catálogo que criado a partir das relações res
 
 vou deixar saldo a primeira versão aqui para manter o histórico.
 
-![1783306598131](resources/der_v1.png)
+![1783989242535](docs/image/notas/der_v1.png)
 
 A partir da V1 é possível refletir diversos aspectos da modelagem e já observar tratamentos que precisam ser feitos ligados a cardinalidade de relações N:N.
 
@@ -261,7 +261,7 @@ A partir da V1 é possível refletir diversos aspectos da modelagem e já observ
 |     R09     | Livro     | é reservado em | Reserva     |      1:N      |     Não     | RN12                 |
 | ==R10== | Perfil    | é atribuído a | Usuário    |      1:N      |     Sim     | RN15                 |
 
-![1783306635275](resources/der_v2.png)
+![17839892425351](docs/image/notas/der_v2.png)
 
 ## V3
 
@@ -285,7 +285,7 @@ A partir da V1 é possível refletir diversos aspectos da modelagem e já observ
 |     R11     | Livro     | é reservado em      | Reserva     |      1:N      |     Não     | RN12                 |
 |     R12     | Perfil    | classifica           | Usuário    |      1:N      |     Sim     | RN15                 |
 
-![1783306635275](resources/der_v3.png)
+![17989242535](docs/image/notas/der_v3.png)
 
 - A V3 fecha o diagrama e os atributos das entidades levarei para o modelo lógico e o detalhamento de tipo, constraints e etc deixarei para o dicionario de dados para não poluir os diagramas.
 
@@ -308,7 +308,7 @@ O modelo começa a se descobrar representando atributos de negócio e atributos 
 
 Neste ponto eu criei um print representando o V1, antes de começar a relacionar as entidades e já e possível ver a criação de uma nova entidade (status) que auxilia as entidades: exemplar, emprestimo e reserva, decidi criar essa entidade para controle e sendo uma só para não inchar  muito o modelo.
 
-![1783306635275](resources/der_logico_v1.png)
+![178398242535](docs/image/notas/der_logico_v1.png)
 
 ## V2
 
@@ -316,7 +316,7 @@ Para evolução do modelo lógico realizei as ligações entre as entidades(rela
 
 O detalhamento de cada atributo ficará presente no dicionário de dados, representando o próximo nível de abstração da modelagem antes do modelo físico.
 
-![1783306635275](resources/der_logico_v2.png)
+![178398292535](docs/image/notas/der_logico_v2.png)
 
 ==Obs.:==
 
@@ -337,7 +337,7 @@ O detalhamento de cada atributo ficará presente no dicionário de dados, repres
 
 O DER conceitual também evolui buscando representar a entidade Status gerando uma V4 do modelo e acompanhando o modelo lógico.
 
-![1783306635275](resources/der_v4.png)
+![1783982535](docs/image/notas/der_v4.png)
 
 ---
 
@@ -415,6 +415,10 @@ Em um outro projeto pretendo usar:
 
 Um ponto relevante que vejo no mercado é o uso de estratégias de otimização de consultas sempre que possível, o que inclui o uso de índices em base de dados, procurei aplicar esta parte para experimentar [13]
 
+
+![1783942535](docs/image/notas/der_materializado.png)
+
+
 ### Seed
 
 Para validar o modelo materializado(banco de dados criado no postgres) precisei seguir uma sequência que respeitasse as foreign keys, que foi a seguinte ordem:
@@ -437,16 +441,11 @@ Para realização do seed criei o script no arquivo:
 
 > 06-seed_db.sql
 
-
-
 Uma diferença legal que usei nos scripts citados acima é que no primeiro (criação do db) usei `set search_path to` para que os artefatos fossem criados no `schema biblioteca` pois o padrão seria criar o `schema public` já no outro script (de seed) apenas usei o prefixo em cada chamada como por exemplo: `select * from biblioteca.tb_livro` . [16]
 
 - No contexto que citei a diferença está que o primeiro modo funciona na sessão do editor (dbeaver no caso), se fechar e abrir novamente a conexão/editor teria de setar novamente se não a criação dos artefatos iriam para o `schema public` no outro isso e evitado pois a cada chamada  de execução de query o prefixo é enviado junto.
 
-
 ---
-
-
 
 ## Realizando Operações no banco de dados que materializa o modelo para validá-lo a partir do documento de validação
 
@@ -454,10 +453,9 @@ Uma maneira interessante de validar o modelo de dados é realizar perguntas a el
 
 Para validação como citado anteriormente, o modelo foi materializado em um db postgres, logo as operações e perguntas que realizei foram neste banco.
 
-
 As operações e perguntas podem ser encontradas no arquivo:
 
->  04-validacao_modelo_dados.md
+> 04-validacao_modelo_dados.md
 
 A implementação das operações e perguntas podem ser encontradas no arquivo:
 
@@ -474,7 +472,9 @@ baseado nessas classificações, foram executados  e o modelo se comportou devid
 
 Não fiz uma apuração profunda dos resultados apenas de alguns scripts executados.
 
+criei um doc de evidências que visa registrar algumas operações realizadas para validação do modelo de dados.
 
+> docs/05-evidencias_validacao.md
 
 ---
 
