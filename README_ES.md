@@ -1,13 +1,13 @@
 <p align="center">
   <h1>
-    Microprojeto: Moelagem de dados (Biblioteca)
+    Microproyecto: Modelado de Datos (Biblioteca)
   </h1>
 </p>
 
 <div style="display: flex; align-items: center; padding: 10px;">
   <span>
     <a href="https://github.com/rafael-o-cunha/">
-        <img src="https://img.shields.io/badge/-Home-black?style=for-the-badge" alt="Voltar ao Perfil">
+        <img src="https://img.shields.io/badge/-Home-black?style=for-the-badge" alt="Volver al Perfil">
     </a>
   </span>
 </div>
@@ -20,11 +20,13 @@
       <img src="https://img.shields.io/badge/-Português-green?style=for-the-badge" alt="Português">
     </a>
   </span>
-<span>
+
+  <span>
     <a href="https://github.com/rafael-o-cunha/microprojeto_05_modelagem_de_dados/blob/main/README_EN.md">
       <img src="https://img.shields.io/badge/-English-blue?style=for-the-badge" alt="English">
     </a>
   </span>
+
   <span>
     <a href="https://github.com/rafael-o-cunha/microprojeto_05_modelagem_de_dados/blob/main/README_ES.md">
       <img src="https://img.shields.io/badge/-Español-red?style=for-the-badge" alt="Español">
@@ -34,15 +36,15 @@
 
 ---
 
-# 📋 Resumo
+# 📋 Resumen
 
-Este microprojeto foi desenvolvido com o objetivo de praticar todo o processo de modelagem de dados utilizado no desenvolvimento de sistemas.
+Este microproyecto fue desarrollado con el objetivo de practicar el proceso completo de modelado de datos utilizado durante el desarrollo de software.
 
-Utilizando como domínio um **Sistema de Biblioteca Escolar**, o projeto percorre todas as etapas clássicas da engenharia de dados, desde o levantamento de requisitos até a implementação física do banco de dados em PostgreSQL.
+Utilizando como dominio un **Sistema de Biblioteca Escolar**, el proyecto recorre todas las etapas clásicas de la ingeniería de datos, desde el levantamiento de requisitos hasta la implementación física de la base de datos en PostgreSQL.
 
-Além da construção do modelo, o projeto também contempla sua validação através de operações SQL, consultas operacionais, consultas históricas, consultas gerenciais e um documento de evidências demonstrando que o modelo atende às necessidades do domínio.
+Además de la construcción del modelo, el proyecto incluye su validación mediante operaciones SQL, consultas operativas, consultas históricas, consultas gerenciales y un documento de evidencias que demuestra que el modelo satisface las necesidades del dominio.
 
-Mais do que produzir um banco de dados funcional, este microprojeto foi concebido como um laboratório para compreender como um modelo de dados evolui durante o ciclo de desenvolvimento de software.
+Más que construir una base de datos funcional, este microproyecto fue concebido como un laboratorio para comprender cómo evoluciona un modelo de datos a lo largo del ciclo de vida del desarrollo de software.
 
 ---
 
@@ -50,114 +52,112 @@ Mais do que produzir um banco de dados funcional, este microprojeto foi concebid
 
 ---
 
-> **⚠️ Nota sobre este microprojeto**
+> **⚠️ Acerca de este microproyecto**
 >
-> Este projeto possui caráter exclusivamente educacional.
+> Este proyecto tiene un propósito exclusivamente educativo.
 >
-> O objetivo não foi apenas construir um banco de dados, mas exercitar todas as etapas envolvidas na modelagem de dados utilizadas em projetos reais.
+> El objetivo no fue únicamente construir una base de datos, sino practicar todas las etapas involucradas en el modelado de datos utilizadas en proyectos reales de software.
 >
-> Para manter o foco no processo de modelagem, alguns temas como otimização de consultas, procedures, triggers, views materializadas e estratégias avançadas de desempenho foram propositalmente deixados para microprojetos futuros.
+> Para mantener el enfoque en el proceso de modelado, temas como optimización de consultas, procedimientos almacenados, triggers, vistas materializadas y estrategias avanzadas de rendimiento fueron intencionalmente reservados para futuros microproyectos.
 >
-> Dessa forma, este projeto concentra-se em compreender profundamente como transformar requisitos de negócio em um modelo físico consistente e validado.
->
-> Em outras palavras: **o objetivo aqui não é construir  o modelo de dados perfeito ou a base de dados perfeita, mas compreender profundamente os fundamentos da modelage de dados antes de evoluir para arquiteturas e recursos mais avançados.**
+> En otras palabras: **el objetivo no es construir la base de datos perfecta, sino comprender profundamente los fundamentos del modelado de datos antes de avanzar hacia arquitecturas y recursos más avanzados.**
 
 ---
 
-# Conceitos Praticados
+# Conceptos Practicados
 
-## Levantamento de Requisitos
+## Levantamiento de Requisitos
 
-- Identificação do domínio
-- Levantamento dos requisitos funcionais/não funcionais
-- Identificação das entidades do negócio
-- Levantamento das informações necessárias
+- Identificación del dominio
+- Levantamiento de requisitos funcionales y no funcionales
+- Identificación de las entidades del negocio
+- Levantamiento de la información necesaria
 
-## Regras de Negócio
+## Reglas de Negocio
 
-- Formalização das regras do domínio
-- Identificação das entidades impactadas
-- Rastreabilidade entre regras e modelo
+- Formalización de las reglas del negocio
+- Identificación de las entidades afectadas
+- Trazabilidad entre las reglas y el modelo
 
-## Modelagem Conceitual
+## Modelado Conceptual
 
-- Identificação de entidades
-- Relacionamentos
+- Identificación de entidades
+- Relaciones
 - Cardinalidades
-- Evolução do DER
-- Resolução de relacionamentos N:N
+- Evolución del DER
+- Resolución de relaciones N:M
 
-## Modelagem Lógica
+## Modelado Lógico
 
-- Definição dos atributos
-- Chaves primárias
-- Chaves estrangeiras
-- Entidades associativas
-- Normalização
+- Definición de atributos
+- Claves primarias
+- Claves foráneas
+- Entidades asociativas
+- Normalización
 
-## Dicionário de Dados
+## Diccionario de Datos
 
-- Documentação dos atributos
-- Tipos de dados
-- Restrições
-- Valores padrão
-- Regras relacionadas
+- Documentación de atributos
+- Tipos de datos
+- Restricciones
+- Valores por defecto
+- Reglas relacionadas
 
 ## Modelo Físico
 
-- Implementação em PostgreSQL
+- Implementación en PostgreSQL
 - Constraints
-- Integridade referencial
+- Integridad referencial
 - Índices
-- Scripts
+- Scripts SQL
 
-## Validação do Modelo
+## Validación del Modelo
 
-O modelo foi validado através de:
+El modelo fue validado mediante:
 
-- Operações CRUD
-- Consultas Operacionais
+- Operaciones CRUD
+- Consultas Operativas
 - Consultas Históricas
-- Consultas Gerenciais
-- Documento de Evidências
+- Consultas Gerenciales
+- Documento de Evidencias
 
 ---
 
-# Processo de Modelagem
+# Proceso de Modelado
 
-O desenvolvimento seguiu o fluxo abaixo.
+El desarrollo siguió el siguiente flujo.
 
-- Levantamento de requisitos
-- Regras de negócio
+- Levantamiento de requisitos
+- Reglas de negocio
 - Entidades
 - DER
-- Dicionário de dados
-- Conjunto de perguntas para validar o modelo
-- SQL ANSI
-- Documento de evidências
+- Diccionario de datos
+- Conjunto de consultas para validar el modelo
+- Implementación en SQL ANSI
+- Documento de evidencias
 
 ---
 
-# Artefatos Produzidos
+# Artefactos Generados
 
-Ao longo do desenvolvimento foram produzidos os seguintes documentos.
+Durante el desarrollo fueron producidos los siguientes documentos.
 
-- Levantamento de Requisitos
-- Regras de Negócio
-- Modelo Conceitual (DER)
+- Levantamiento de Requisitos
+- Reglas de Negocio
+- Modelo Conceptual (DER)
 - Modelo Lógico
-- Dicionário de Dados
+- Diccionario de Datos
 - Modelo Físico
 - Scripts de Seed
-- Operações SQL
-- Consultas Operacionais
+- Operaciones SQL
+- Consultas Operativas
 - Consultas Históricas
-- Consultas Gerenciais
-- Documento de Evidências
+- Consultas Gerenciales
+- Documento de Evidencias
 
 ---
 
-# Tecnologias
+# Tecnologías
 
 - PostgreSQL
 - SQL ANSI
@@ -169,12 +169,12 @@ Ao longo do desenvolvimento foram produzidos os seguintes documentos.
 
 ---
 
-# 📂 Estrutura do Projeto
+# 📂 Estructura del Proyecto
 
 ```text
 .
 ├── docs
-│   ├── 01-levantamento_requisitos.md
+│   ├── 01-levantamiento_requisitos.md
 │   ├── 02-regras_negocio.md
 │   ├── 03-dicionario_dados.md
 │   ├── 04-validacao_modelo_dados.md
@@ -191,90 +191,88 @@ Ao longo do desenvolvimento foram produzidos os seguintes documentos.
 
 ---
 
-# Validação
+# Validación
 
-O banco de dados foi validado através de quatro conjuntos de consultas.
+La base de datos fue validada mediante cuatro grupos de consultas.
 
-| Grupo                  | Objetivo                                                    |
-| ---------------------- | ----------------------------------------------------------- |
-| Operações            | Validar inserções, alterações e processos do sistema    |
-| Consultas Operacionais | Responder perguntas utilizadas no dia a dia da biblioteca   |
-| Consultas Históricas  | Recuperar informações históricas preservadas pelo modelo |
-| Consultas Gerenciais   | Produzir indicadores e apoiar a tomada de decisão          |
+| Grupo | Objetivo |
+|-------|----------|
+| Operaciones | Validar inserciones, actualizaciones y procesos del sistema |
+| Consultas Operativas | Responder preguntas utilizadas en el funcionamiento diario de la biblioteca |
+| Consultas Históricas | Recuperar información histórica preservada por el modelo |
+| Consultas Gerenciales | Generar indicadores para apoyar la toma de decisiones |
 
 ---
 
-# Evidências
+# Evidencias
 
-O projeto inclui um documento de evidências contendo a execução do modelo físico.
+El proyecto incluye un documento de evidencias que contiene la ejecución del modelo físico.
 
-Foram documentadas evidências de:
+Se documentaron evidencias de:
 
-- Criação do banco de dados
+- Creación de la base de datos
 - Carga inicial (Seed)
-- Execução das operações
-- Consultas operacionais
+- Ejecución de operaciones
+- Consultas operativas
 - Consultas históricas
-- Consultas gerenciais
+- Consultas gerenciales
 
 ---
 
-# Conceitos Praticados
+# Conceptos Practicados
 
-Durante este microprojeto foram praticados os seguintes conceitos.
+Durante este microproyecto se trabajaron los siguientes conceptos.
 
-- Levantamento de Requisitos
-- Regras de Negócio
-- Engenharia de Requisitos
-- Modelagem Conceitual
-- Modelo Entidade-Relacionamento (MER)
-- Diagrama Entidade-Relacionamento (DER)
+- Levantamiento de Requisitos
+- Reglas de Negocio
+- Ingeniería de Requisitos
+- Modelado Conceptual
+- Modelo Entidad-Relación (MER)
+- Diagrama Entidad-Relación (DER)
 - Cardinalidades
-- Entidades Associativas
-- Normalização
+- Entidades Asociativas
+- Normalización
 - Modelo Lógico
 - Modelo Físico
-- Dicionário de Dados
+- Diccionario de Datos
 - PostgreSQL
 - SQL ANSI
-- Chaves Primárias
-- Chaves Estrangeiras
-- Chaves Compostas
-- Integridade Referencial
+- Claves Primarias
+- Claves Foráneas
+- Claves Compuestas
+- Integridad Referencial
 - Constraints
 - Índices
 - Scripts DDL
 - Scripts DML
 - Seed Database
 - Consultas SQL
-- Governança de Dados
-- Documentação Técnica
-- Entre outros...
+- Gobernanza de Datos
+- Documentación Técnica
+- Entre otros...
 
 ---
 
-# Próximos Passos / Melhorias
+# Próximos Pasos / Mejoras
 
-Os próximos microprojetos poderão abordar temas como:
+Los próximos microproyectos podrán abordar temas como:
 
 → Views
 → Materialized Views
-→ Procedures
+→ Stored Procedures
 → Functions
 → Triggers
 → CTE (Common Table Expressions)
 → Window Functions
-→ Particionamento
-→ Estratégias de Indexação
-→ Otimização de Consultas
-→ Plano de Execução (EXPLAIN)
+→ Particionamiento
+→ Estrategias de Indexación
+→ Optimización de Consultas
+→ Planes de Ejecución (EXPLAIN)
 
 ---
 
-# 📂 Descrição completa do Projeto
+# 📂 Descripción Completa del Proyecto
 
 ```text
 https://rafael-o-cunha.dev/projects/modelagem-de-dados-biblioteca
 ```
-
-<a href="https://github.com/rafael-o-cunha/microprojeto_05_modelagem_de_dados/blob/main/README.md">

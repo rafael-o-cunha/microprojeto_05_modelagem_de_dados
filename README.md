@@ -1,6 +1,6 @@
 <p align="center">
   <h1>
-    Microprojeto: Moelagem de dados (Biblioteca)
+    Microprojeto: Modelagem de dados (Biblioteca)
   </h1>
 </p>
 
@@ -60,7 +60,7 @@ Mais do que produzir um banco de dados funcional, este microprojeto foi concebid
 >
 > Dessa forma, este projeto concentra-se em compreender profundamente como transformar requisitos de negócio em um modelo físico consistente e validado.
 >
-> Em outras palavras: **o objetivo aqui não é construir  o modelo de dados perfeito ou a base de dados perfeita, mas compreender profundamente os fundamentos da modelage de dados antes de evoluir para arquiteturas e recursos mais avançados.**
+> Em outras palavras: **o objetivo aqui não é construir  o modelo de dados perfeito ou a base de dados perfeita, mas compreender profundamente os fundamentos da modelagem de dados antes de evoluir para arquiteturas e recursos mais avançados.**
 
 ---
 

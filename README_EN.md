@@ -1,13 +1,13 @@
 <p align="center">
   <h1>
-    Microprojeto: Moelagem de dados (Biblioteca)
+    Microproject: Data Modeling (Library)
   </h1>
 </p>
 
 <div style="display: flex; align-items: center; padding: 10px;">
   <span>
     <a href="https://github.com/rafael-o-cunha/">
-        <img src="https://img.shields.io/badge/-Home-black?style=for-the-badge" alt="Voltar ao Perfil">
+        <img src="https://img.shields.io/badge/-Home-black?style=for-the-badge" alt="Back to Profile">
     </a>
   </span>
 </div>
@@ -17,14 +17,16 @@
 <div style="display: flex; align-items: center; padding: 10px;">
   <span>
     <a href="https://github.com/rafael-o-cunha/microprojeto_05_modelagem_de_dados/blob/main/README.md">
-      <img src="https://img.shields.io/badge/-Português-green?style=for-the-badge" alt="Português">
+      <img src="https://img.shields.io/badge/-Português-green?style=for-the-badge" alt="Portuguese">
     </a>
   </span>
-<span>
+
+  <span>
     <a href="https://github.com/rafael-o-cunha/microprojeto_05_modelagem_de_dados/blob/main/README_EN.md">
       <img src="https://img.shields.io/badge/-English-blue?style=for-the-badge" alt="English">
     </a>
   </span>
+
   <span>
     <a href="https://github.com/rafael-o-cunha/microprojeto_05_modelagem_de_dados/blob/main/README_ES.md">
       <img src="https://img.shields.io/badge/-Español-red?style=for-the-badge" alt="Español">
@@ -34,133 +36,131 @@
 
 ---
 
-# 📋 Resumo
+# 📋 Overview
 
-Este microprojeto foi desenvolvido com o objetivo de praticar todo o processo de modelagem de dados utilizado no desenvolvimento de sistemas.
+This microproject was developed to practice the complete data modeling process used during software development.
 
-Utilizando como domínio um **Sistema de Biblioteca Escolar**, o projeto percorre todas as etapas clássicas da engenharia de dados, desde o levantamento de requisitos até a implementação física do banco de dados em PostgreSQL.
+Using a **School Library Management System** as the business domain, the project covers every major stage of database engineering, from requirements gathering to the physical implementation of the database using PostgreSQL.
 
-Além da construção do modelo, o projeto também contempla sua validação através de operações SQL, consultas operacionais, consultas históricas, consultas gerenciais e um documento de evidências demonstrando que o modelo atende às necessidades do domínio.
+Beyond building the database model itself, the project also includes its validation through SQL operations, operational queries, historical queries, management queries, and an evidence document demonstrating that the model satisfies the business requirements.
 
-Mais do que produzir um banco de dados funcional, este microprojeto foi concebido como um laboratório para compreender como um modelo de dados evolui durante o ciclo de desenvolvimento de software.
-
----
-
-![DER Final](docs/image/notas/der_materializado.png)
+Rather than simply producing a functional database, this microproject was designed as a practical laboratory to understand how a data model evolves throughout the software development lifecycle.
 
 ---
 
-> **⚠️ Nota sobre este microprojeto**
->
-> Este projeto possui caráter exclusivamente educacional.
->
-> O objetivo não foi apenas construir um banco de dados, mas exercitar todas as etapas envolvidas na modelagem de dados utilizadas em projetos reais.
->
-> Para manter o foco no processo de modelagem, alguns temas como otimização de consultas, procedures, triggers, views materializadas e estratégias avançadas de desempenho foram propositalmente deixados para microprojetos futuros.
->
-> Dessa forma, este projeto concentra-se em compreender profundamente como transformar requisitos de negócio em um modelo físico consistente e validado.
->
-> Em outras palavras: **o objetivo aqui não é construir  o modelo de dados perfeito ou a base de dados perfeita, mas compreender profundamente os fundamentos da modelage de dados antes de evoluir para arquiteturas e recursos mais avançados.**
+![Final ER Diagram](docs/image/notas/der_materializado.png)
 
 ---
 
-# Conceitos Praticados
+> **⚠️ About this microproject**
+>
+> This project is intended exclusively for educational purposes.
+>
+> The goal was not only to build a database, but also to practice every stage involved in data modeling as performed in real-world software projects.
+>
+> To keep the focus on the modeling process, topics such as query optimization, stored procedures, triggers, materialized views, and advanced performance strategies were intentionally left for future microprojects.
+>
+> In other words, **the objective is not to build the perfect database, but to develop a deep understanding of data modeling fundamentals before moving on to more advanced database architectures and techniques.**
 
-## Levantamento de Requisitos
+---
 
-- Identificação do domínio
-- Levantamento dos requisitos funcionais/não funcionais
-- Identificação das entidades do negócio
-- Levantamento das informações necessárias
+# Concepts Practiced
 
-## Regras de Negócio
+## Requirements Gathering
 
-- Formalização das regras do domínio
-- Identificação das entidades impactadas
-- Rastreabilidade entre regras e modelo
+- Business domain identification
+- Functional and non-functional requirements
+- Business entity identification
+- Information requirements gathering
 
-## Modelagem Conceitual
+## Business Rules
 
-- Identificação de entidades
-- Relacionamentos
-- Cardinalidades
-- Evolução do DER
-- Resolução de relacionamentos N:N
+- Business rule definition
+- Identification of impacted entities
+- Traceability between business rules and the data model
 
-## Modelagem Lógica
+## Conceptual Modeling
 
-- Definição dos atributos
-- Chaves primárias
-- Chaves estrangeiras
-- Entidades associativas
-- Normalização
+- Entity identification
+- Relationships
+- Cardinalities
+- ER diagram evolution
+- Resolution of many-to-many relationships
 
-## Dicionário de Dados
+## Logical Modeling
 
-- Documentação dos atributos
-- Tipos de dados
-- Restrições
-- Valores padrão
-- Regras relacionadas
+- Attribute definition
+- Primary keys
+- Foreign keys
+- Associative entities
+- Database normalization
 
-## Modelo Físico
+## Data Dictionary
 
-- Implementação em PostgreSQL
+- Attribute documentation
+- Data types
 - Constraints
-- Integridade referencial
-- Índices
-- Scripts
+- Default values
+- Related business rules
 
-## Validação do Modelo
+## Physical Model
 
-O modelo foi validado através de:
+- PostgreSQL implementation
+- Constraints
+- Referential integrity
+- Indexes
+- SQL scripts
 
-- Operações CRUD
-- Consultas Operacionais
-- Consultas Históricas
-- Consultas Gerenciais
-- Documento de Evidências
+## Model Validation
 
----
+The model was validated through:
 
-# Processo de Modelagem
-
-O desenvolvimento seguiu o fluxo abaixo.
-
-- Levantamento de requisitos
-- Regras de negócio
-- Entidades
-- DER
-- Dicionário de dados
-- Conjunto de perguntas para validar o modelo
-- SQL ANSI
-- Documento de evidências
+- CRUD operations
+- Operational queries
+- Historical queries
+- Management queries
+- Evidence documentation
 
 ---
 
-# Artefatos Produzidos
+# Modeling Process
 
-Ao longo do desenvolvimento foram produzidos os seguintes documentos.
+The project followed the workflow below.
 
-- Levantamento de Requisitos
-- Regras de Negócio
-- Modelo Conceitual (DER)
-- Modelo Lógico
-- Dicionário de Dados
-- Modelo Físico
-- Scripts de Seed
-- Operações SQL
-- Consultas Operacionais
-- Consultas Históricas
-- Consultas Gerenciais
-- Documento de Evidências
+- Requirements Gathering
+- Business Rules
+- Entity Identification
+- Entity Relationship Diagram (ERD)
+- Data Dictionary
+- Validation Queries
+- ANSI SQL Implementation
+- Evidence Documentation
 
 ---
 
-# Tecnologias
+# Produced Artifacts
+
+During the project, the following artifacts were created.
+
+- Requirements Specification
+- Business Rules
+- Conceptual Model (ERD)
+- Logical Model
+- Data Dictionary
+- Physical Model
+- Seed Scripts
+- SQL Operations
+- Operational Queries
+- Historical Queries
+- Management Queries
+- Evidence Documentation
+
+---
+
+# Technologies
 
 - PostgreSQL
-- SQL ANSI
+- ANSI SQL
 - Docker
 - Docker Compose
 - Makefile
@@ -169,21 +169,21 @@ Ao longo do desenvolvimento foram produzidos os seguintes documentos.
 
 ---
 
-# 📂 Estrutura do Projeto
+# 📂 Project Structure
 
 ```text
 .
 ├── docs
-│   ├── 01-levantamento_requisitos.md
-│   ├── 02-regras_negocio.md
-│   ├── 03-dicionario_dados.md
-│   ├── 04-validacao_modelo_dados.md
-│   ├── 05-evidencias_validacao.md
+│   ├── 01-requirements.md
+│   ├── 02-business_rules.md
+│   ├── 03-data_dictionary.md
+│   ├── 04-model_validation.md
+│   ├── 05-validation_evidence.md
 │   └── image
 ├── infra
 │   └── docker-compose.yml
 ├── sql
-│   ├── 04-validacao_modelo_dados.sql
+│   ├── 04-model_validation.sql
 │   ├── 05-schema_db.sql
 │   └── 06-seed_db.sql
 └── Makefile
@@ -191,90 +191,88 @@ Ao longo do desenvolvimento foram produzidos os seguintes documentos.
 
 ---
 
-# Validação
+# Validation
 
-O banco de dados foi validado através de quatro conjuntos de consultas.
+The database was validated through four groups of SQL scripts.
 
-| Grupo                  | Objetivo                                                    |
-| ---------------------- | ----------------------------------------------------------- |
-| Operações            | Validar inserções, alterações e processos do sistema    |
-| Consultas Operacionais | Responder perguntas utilizadas no dia a dia da biblioteca   |
-| Consultas Históricas  | Recuperar informações históricas preservadas pelo modelo |
-| Consultas Gerenciais   | Produzir indicadores e apoiar a tomada de decisão          |
-
----
-
-# Evidências
-
-O projeto inclui um documento de evidências contendo a execução do modelo físico.
-
-Foram documentadas evidências de:
-
-- Criação do banco de dados
-- Carga inicial (Seed)
-- Execução das operações
-- Consultas operacionais
-- Consultas históricas
-- Consultas gerenciais
+| Group | Purpose |
+|------|---------|
+| Operations | Validate inserts, updates, and business processes |
+| Operational Queries | Answer day-to-day business questions |
+| Historical Queries | Retrieve historical information preserved by the model |
+| Management Queries | Generate indicators to support decision-making |
 
 ---
 
-# Conceitos Praticados
+# Evidence
 
-Durante este microprojeto foram praticados os seguintes conceitos.
+The project includes an evidence document containing the execution results of the physical database model.
 
-- Levantamento de Requisitos
-- Regras de Negócio
-- Engenharia de Requisitos
-- Modelagem Conceitual
-- Modelo Entidade-Relacionamento (MER)
-- Diagrama Entidade-Relacionamento (DER)
-- Cardinalidades
-- Entidades Associativas
-- Normalização
-- Modelo Lógico
-- Modelo Físico
-- Dicionário de Dados
+The following validation activities were documented:
+
+- Database creation
+- Initial data loading (Seed)
+- Execution of SQL operations
+- Operational queries
+- Historical queries
+- Management queries
+
+---
+
+# Concepts Covered
+
+Throughout this microproject, the following concepts were practiced.
+
+- Requirements Engineering
+- Business Rules
+- Requirements Analysis
+- Conceptual Data Modeling
+- Entity-Relationship Model (ERM)
+- Entity-Relationship Diagram (ERD)
+- Cardinalities
+- Associative Entities
+- Database Normalization
+- Logical Data Model
+- Physical Data Model
+- Data Dictionary
 - PostgreSQL
-- SQL ANSI
-- Chaves Primárias
-- Chaves Estrangeiras
-- Chaves Compostas
-- Integridade Referencial
+- ANSI SQL
+- Primary Keys
+- Foreign Keys
+- Composite Keys
+- Referential Integrity
 - Constraints
-- Índices
-- Scripts DDL
-- Scripts DML
-- Seed Database
-- Consultas SQL
-- Governança de Dados
-- Documentação Técnica
-- Entre outros...
+- Indexes
+- DDL Scripts
+- DML Scripts
+- Database Seeding
+- SQL Queries
+- Data Governance
+- Technical Documentation
+- And more...
 
 ---
 
-# Próximos Passos / Melhorias
+# Future Improvements
 
-Os próximos microprojetos poderão abordar temas como:
+Future microprojects may explore topics such as:
 
 → Views
 → Materialized Views
-→ Procedures
+→ Stored Procedures
 → Functions
 → Triggers
-→ CTE (Common Table Expressions)
+→ Common Table Expressions (CTE)
 → Window Functions
-→ Particionamento
-→ Estratégias de Indexação
-→ Otimização de Consultas
-→ Plano de Execução (EXPLAIN)
+→ Table Partitioning
+→ Indexing Strategies
+→ Query Optimization
+→ Execution Plans (EXPLAIN)
 
 ---
 
-# 📂 Descrição completa do Projeto
+# 📂 Full Project Description
 
 ```text
 https://rafael-o-cunha.dev/projects/modelagem-de-dados-biblioteca
 ```
-
-<a href="https://github.com/rafael-o-cunha/microprojeto_05_modelagem_de_dados/blob/main/README.md">
