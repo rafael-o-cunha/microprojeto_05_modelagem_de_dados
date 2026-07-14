@@ -258,15 +258,25 @@ Durante este microproyecto se trabajaron los siguientes conceptos.
 Los próximos microproyectos podrán abordar temas como:
 
 → Views
+
 → Materialized Views
+
 → Stored Procedures
+
 → Functions
+
 → Triggers
+
 → CTE (Common Table Expressions)
+
 → Window Functions
+
 → Particionamiento
+
 → Estrategias de Indexación
+
 → Optimización de Consultas
+
 → Planes de Ejecución (EXPLAIN)
 
 ---
