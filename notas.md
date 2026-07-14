@@ -32,6 +32,7 @@ Utilizarei ferramentas que me permitirão implementar a modelagem além de test�
 - Dicionário de dados
 - Conjunto de perguntas para validar o modelo
 - SQL ANSI
+- Documento de evidências
 
 ---
 
@@ -415,9 +416,7 @@ Em um outro projeto pretendo usar:
 
 Um ponto relevante que vejo no mercado é o uso de estratégias de otimização de consultas sempre que possível, o que inclui o uso de índices em base de dados, procurei aplicar esta parte para experimentar [13]
 
-
 ![1783942535](docs/image/notas/der_materializado.png)
-
 
 ### Seed
 
