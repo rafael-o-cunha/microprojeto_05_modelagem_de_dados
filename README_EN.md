@@ -258,15 +258,25 @@ Throughout this microproject, the following concepts were practiced.
 Future microprojects may explore topics such as:
 
 → Views
+
 → Materialized Views
+
 → Stored Procedures
+
 → Functions
+
 → Triggers
+
 → Common Table Expressions (CTE)
-→ Window Functions
+
+→ Window 
+
 → Table Partitioning
+
 → Indexing Strategies
+
 → Query Optimization
+
 → Execution Plans (EXPLAIN)
 
 ---
